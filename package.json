@@ -1,0 +1,18 @@
+{
+  "name": "msetup-ws",
+  "version": "1.0.0",
+  "description": "setup api for mobile",
+  "main": "server.js",
+  "scripts": {
+    "script": "node server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "google-auth-library": "^0.12.0",
+    "googleapis": "^23.0.0",
+    "restify": "6.3.4",
+    "restify-cors-middleware": "1.1.0"
+  }
+}
