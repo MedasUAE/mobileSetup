@@ -19,7 +19,7 @@ const cors = corsMiddleware({
     origins: ['*'],
     allowHeaders: ['Authorization'],
     exposeHeaders: ['API-Token-Expiry']
-})
+});
   
 server.pre(cors.preflight)
 server.use(cors.actual)
