@@ -4,12 +4,15 @@
   "description": "setup api for mobile",
   "main": "server.js",
   "scripts": {
+    "prestart": "node getEnv",
     "script": "node server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/storage": "1.5.2",
+    "dotenv": "^4.0.0",
     "mongoose": "5.0.0-rc2",
     "restify": "6.3.4",
     "restify-cors-middleware": "1.1.0"

@@ -2,6 +2,7 @@ var restify = require('restify');
 var plugins = require('restify').plugins;
 const corsMiddleware = require('restify-cors-middleware');
 var mongoose = require('mongoose');
+require('dotenv').config() // Loads .env
 var config = require('./config/config');
 require('./config/global');
 var client = require('./controllers/client');
@@ -15,7 +16,9 @@ server.use(plugins.queryParser());
 
 const cors = corsMiddleware({
     preflightMaxAge: 5, //Optional
-    origins: ['*']
+    origins: ['*'],
+    allowHeaders: ['Authorization'],
+    exposeHeaders: ['API-Token-Expiry']
 })
   
 server.pre(cors.preflight)
@@ -76,6 +79,54 @@ server.get("/getinsurances", (req,res)=>{
 server.get("/getdoctors", (req,res)=>{
     if(!req.query.client) return res.send(400,{error:"NoClient"}); 
     client.getDoctors(req.query.client,(err,result)=>{
+        if(err) return res.send(400,{error:err});
+        return res.json({data:result});   
+    });
+});
+
+server.get("/getdepartments", (req,res)=>{
+    if(!req.query.client) return res.send(400,{error:"NoClient"}); 
+    client.getDepartments(req.query.client,(err,result)=>{
+        if(err) return res.send(400,{error:err});
+        return res.json({data:result});   
+    });
+});
+
+server.get("/getnews", (req,res)=>{
+    if(!req.query.client) return res.send(400,{error:"NoClient"}); 
+    client.getNews(req.query.client,(err,result)=>{
+        if(err) return res.send(400,{error:err});
+        return res.json({data:result});   
+    });
+});
+
+server.get("/getfacilities", (req,res)=>{
+    if(!req.query.client) return res.send(400,{error:"NoClient"}); 
+    client.getFacilities(req.query.client,(err,result)=>{
+        if(err) return res.send(400,{error:err});
+        return res.json({data:result});   
+    });
+});
+
+server.get("/getaboutus", (req,res)=>{
+    if(!req.query.client) return res.send(400,{error:"NoClient"}); 
+    client.getAboutus(req.query.client,(err,result)=>{
+        if(err) return res.send(400,{error:err});
+        return res.json({data:result});   
+    });
+});
+
+server.get("/getpharmacies", (req,res)=>{
+    if(!req.query.client) return res.send(400,{error:"NoClient"}); 
+    client.getPharmacies(req.query.client,(err,result)=>{
+        if(err) return res.send(400,{error:err});
+        return res.json({data:result});   
+    });
+});
+
+server.get("/getclientdetails", (req,res)=>{
+    if(!req.query.client) return res.send(400,{error:"NoClient"}); 
+    client.getClientDetails(req.query.client,(err,result)=>{
         if(err) return res.send(400,{error:err});
         return res.json({data:result});   
     });
