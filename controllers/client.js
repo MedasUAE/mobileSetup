@@ -89,6 +89,27 @@ function addClient(client, next){
     })
 }
 
+function getLayouts(client,next){
+    ClientModel.findOne({ name: client },(err,result)=>{
+        if(err) return next(err);
+        if(!result) return next("NoClientPresent");
+        let response = {
+            layout: result.layout
+        }
+        return next(null,response);
+    })
+}
+
+function addLayout(client, next){
+    const data = { name: client };
+    var client = new ClientModel(data);
+    client.save(function(err, result) {
+        if (err) return next(err)
+        return next(null,result);
+    })
+}
+
+
 // function prepareInsulranceList(result){
 //     let insurances = [];
 //     const name_en = 0, name_ar = 1, description_en = 2, description_ar = 3, img = 4; 
@@ -114,3 +135,5 @@ exports.getPharmacies = getPharmacies;
 exports.getFacilities = getFacilities;
 exports.getAboutus = getAboutus;
 exports.getClientDetails = getClientDetails;
+exports.getLayouts = getLayouts;
+exports.addLayout = addLayout;

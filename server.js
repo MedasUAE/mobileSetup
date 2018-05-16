@@ -140,6 +140,24 @@ server.get("/addclient", (req,res)=>{
     });
 });
 
+server.get("/getlayouts", (req,res)=>{
+    const next = (err,result)=>{
+        if(err) return res.send(400,{error:err});
+        return res.json({data:result});   
+    }
+
+    if(!req.query.client) return res.send(400,{error:"NoClient"}); 
+    client.getLayouts(req.query.client, next);
+});
+
+server.get("/addlayout", (req,res)=>{
+    if(!req.query.client) return res.send(400,{error:"NoClient"}); 
+    client.addLayout(req.query.client, (err,result)=>{
+        if(err) return res.send(400,{error:err});
+        return res.json({data:result});   
+    });
+});
+
 function sendEmail(client){
     console.log("SendEmail:",client);
 }

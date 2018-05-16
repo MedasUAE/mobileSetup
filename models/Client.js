@@ -11,7 +11,8 @@ var clientSchema = mongoose.Schema({
     aboutus:Array,
     facilities:Array,
     call:String,
-    address:{type:mongoose.Schema.Types.Mixed}
+    address:{type:mongoose.Schema.Types.Mixed},
+    layout:{type:mongoose.Schema.Types.Mixed}
 },{strict:false});
 
 module.exports = mongoose.model('Client', clientSchema);
