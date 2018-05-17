@@ -100,12 +100,10 @@ function getLayouts(client,next){
     })
 }
 
-function addLayout(client, next){
-    const data = { name: client };
-    var client = new ClientModel(data);
-    client.save(function(err, result) {
-        if (err) return next(err)
-        return next(null,result);
+function editLayout(client, layout, next){
+    ClientModel.updateOne({name:client}, {layout:layout}, (err, result)=>{
+        if(err) return next(err);
+        return next(null, "Update done");
     })
 }
 
@@ -136,4 +134,4 @@ exports.getFacilities = getFacilities;
 exports.getAboutus = getAboutus;
 exports.getClientDetails = getClientDetails;
 exports.getLayouts = getLayouts;
-exports.addLayout = addLayout;
+exports.editLayout = editLayout;
