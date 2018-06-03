@@ -164,8 +164,7 @@ server.post("/editlayout", (req, res) => {
 });
 
 server.post("/sendemail", (req, res) => {
-    if (!req.query.client) return res.send(400, { error: "NoClient" });
-    email.sendEmail(req.query.client, req.body, (err, result) => {
+    email.sendEmail(req.body, (err, result) => {
         if (err) return res.send(400, { error: err });
         return res.json({ data: result });
     });
