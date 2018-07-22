@@ -74,7 +74,8 @@ function getClientDetails(client,next){
         if(!result) return next("NoClientPresent");
         let response = {
             address: result.address,
-            call:result.call
+            call:result.call,
+            layout: result.layout
         }
         return next(null,response);
     })
