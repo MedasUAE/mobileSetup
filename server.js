@@ -2,7 +2,7 @@ var restify = require('restify');
 var plugins = require('restify').plugins;
 const corsMiddleware = require('restify-cors-middleware');
 var mongoose = require('mongoose');
-require('dotenv').config() // Loads .env
+// require('dotenv').config() // Loads .env
 var config = require('./config/config');
 // require('./config/global');
 var client = require('./controllers/client');
