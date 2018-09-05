@@ -4,7 +4,7 @@ const corsMiddleware = require('restify-cors-middleware');
 var mongoose = require('mongoose');
 require('dotenv').config() // Loads .env
 var config = require('./config/config');
-require('./config/global');
+// require('./config/global');
 var client = require('./controllers/client');
 var email = require('./controllers/email');
 
